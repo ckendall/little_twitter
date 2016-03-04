@@ -1,3 +1,7 @@
+get '/session-viewer' do
+  session.inspect
+end
+
 get '/' do
   erb :'/users/index'
 end

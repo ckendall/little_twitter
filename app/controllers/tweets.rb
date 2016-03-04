@@ -5,7 +5,7 @@ end
 get '/tweets/new' do
   #get form for new record
   @user_id = session[:user_id]
-  erb :new
+   erb :"/tweets/new"
 end
 
 get '/tweets/:id' do
