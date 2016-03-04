@@ -14,10 +14,8 @@ end
 
 post '/tweets' do
   #make a new record
-  tweet = params[:tweet]
-  id = session[:user_id]
-  @tweet = Tweet.create({poster_id: id, body: tweet})
-  redirect "/tweets/#{id}"
+  @tweet = Tweet.create(poster_id: session[:user_id], body: params[:tweet])
+  redirect "/tweets/#{@tweet.id}"
 end
 
 get '/tweets/:id/edit' do
