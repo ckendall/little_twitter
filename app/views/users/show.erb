@@ -19,3 +19,9 @@
 
 </div>
 
+<!-- TODO: handle situation in which someone tries to follow them's own self -->
+<!-- TODO: handle situation in which someone is already following this person -->
+<form action="/relationship" method="post">
+  <input type="hidden" name="poster" value="<%=params[:id]%>">
+  <input type="submit" value="Follow">
+</form>
