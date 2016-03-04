@@ -27,6 +27,5 @@ put '/users/:id' do
 end
 
 delete '/users/:id' do
-  session[:user_id] = nil
-  redirect "/"
+
 end
