@@ -1,0 +1,21 @@
+<div class="top">
+  <h1> Home </h1>
+  <a href="/logout">logout</a>
+
+  <button style="background-image:url(b6.gif)"><a href="/tweets/new">tweet</a></button>
+</div>
+<div>
+<h1>All Users:</h1>
+
+
+
+<% @users.each do |user| %>
+  <br>
+  <a href="/users/<%= user[:id] %>"><%= user.user_name %></a>
+
+  <br>
+<%end%>
+<br>
+<a href="/users/<%=session[:user_id]%>">Profile</a>
+</div>
+
