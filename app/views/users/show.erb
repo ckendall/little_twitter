@@ -3,7 +3,7 @@
   <!-- <a href="/logout">logout</a> -->
 
   <button style="background-image:url(b6.gif)"><a href="/tweets/new">tweet</a></button>
-   <button style="background-image:url(b6.gif)"><a href=<%="/users/#{@user.id}?fuzzy: bunny"%>>profile</a></button>
+   <button style="background-image:url(b6.gif)"><a href=<%="/users/#{session[:user_id]}"%>>profile</a></button>
   <button style="background-image:url(b6.gif)"><a href="/logout">logout</a></button>
 
 </div>
@@ -14,7 +14,7 @@
 
   <% @tweets.each do |tweet| %>
     <br><br>
-    <%= tweet[:name] %>
+    <a href="/users/<%= tweet[:poster] %>"><%= tweet[:name] %></a>
     <br>
     <%= tweet[:body] %>
     <br><br>
@@ -22,3 +22,9 @@
 
 </div>
 
+<!-- TODO: handle situation in which someone tries to follow them's own self -->
+<!-- TODO: handle situation in which someone is already following this person -->
+<form action="/relationship" method="post">
+  <input type="hidden" name="poster" value="<%=params[:id]%>">
+  <input type="submit" value="Follow">
+</form>

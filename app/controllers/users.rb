@@ -7,31 +7,30 @@ get '/users/new' do
 end
 
 get '/users/:id' do
+
+
   @user = User.find(params[:id])
-  # @tweets = []
-  # @user.posters.each do |poster|
-
-  #   @tweets << Tweet.find_by(poster: poster.id)
-  # end
-
   @tweets = []
-  @user.posters.each do |poster|
-    # temp = {}
-    name = User.find(poster.id)
-    p "$" * 50
-    p name
-    followed_tweets = Tweet.where(poster: poster.id)
-    followed_tweets.each do |t|
-      temp2 = {name: name.user_name, body: t.body}
-      @tweets << temp2
+  if session[:user_id] == params[:id].to_i
+    @user.posters.each do |poster|
+      name = User.find(poster.id)
+      followed_tweets = Tweet.where(poster: poster.id)
+      followed_tweets.each do |t|
+        @tweets << {name: name.user_name, body: t.body, poster: t.poster.id}
+      end
     end
+  else
+     user_tweets = Tweet.where(poster: params[:id])
+     user_tweets.each do |tweet|
+        @tweets << {name: tweet.poster.user_name, body: tweet.body, poster: tweet.poster.id}
+     end
 
-    # temp = {name: name.user_name, body: tweet.body}
-    # @tweets << temp
   end
 
   erb :'/users/show'
 end
+
+
 
 post '/users' do
   #make a new record
