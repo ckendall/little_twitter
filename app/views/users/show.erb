@@ -11,7 +11,7 @@
 
   <% @tweets.each do |tweet| %>
     <br><br>
-    <%= tweet[:name] %>
+    <a href="/users/<%= tweet[:poster] %>"><%= tweet[:name] %></a>
     <br>
     <%= tweet[:body] %>
     <br><br>
