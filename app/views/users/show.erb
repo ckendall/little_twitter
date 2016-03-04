@@ -2,3 +2,14 @@
   <h1> Home </h1>
   <a href="/logout">logout</a>
 </div>
+
+<div>
+
+
+  <% @tweets.each do |tweet| %>
+    <%= tweet[:name] %>
+    <%= tweet[:body] %>
+  <% end %>
+
+</div>
+

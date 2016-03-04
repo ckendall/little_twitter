@@ -8,7 +8,31 @@ end
 
 get '/users/:id' do
   @user = User.find(params[:id])
-  #get a particular record
+
+  # @tweets = []
+  # @user.posters.each do |poster|
+
+  #   @tweets << Tweet.find_by(poster: poster.id)
+  # end
+
+
+
+  @tweets = []
+  @user.posters.each do |poster|
+    temp = {}
+    name = User.find(poster.id)
+    p "$" * 50
+    p name
+    tweet = Tweet.find_by(poster: poster.id)
+    p "$" * 50
+    p tweet
+    temp = {name: name.user_name, body: tweet.body}
+    @tweets << temp
+  end
+
+
+
+
   erb :'/users/show'
 end
 
