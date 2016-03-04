@@ -4,6 +4,8 @@ end
 
 get '/tweets/new' do
   #get form for new record
+  @user_id = session[:user_id]
+  erb :new
 end
 
 get '/tweets/:id' do
@@ -12,6 +14,10 @@ end
 
 post '/tweets' do
   #make a new record
+  tweet = params[:tweet]
+  id = session[:user_id]
+  @tweet = Tweet.create({poster_id: id, body: tweet})
+  redirect "/tweets/#{id}"
 end
 
 get '/tweets/:id/edit' do
