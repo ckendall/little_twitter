@@ -10,6 +10,9 @@ end
 
 get '/tweets/:id' do
   #get a particular record
+  tweet = Tweet.find params[:id]
+  poster = User.find(tweet.poster_id)
+  erb :"/tweets/show_one_tweet", locals: {poster: poster, tweet: tweet}
 end
 
 post '/tweets' do
