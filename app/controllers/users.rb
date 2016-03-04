@@ -8,6 +8,7 @@ end
 
 get '/users/:id' do
 
+
   @user = User.find(params[:id])
   @tweets = []
   if session[:user_id] == params[:id].to_i
@@ -25,6 +26,7 @@ get '/users/:id' do
      end
 
   end
+
   erb :'/users/show'
 end
 

@@ -8,7 +8,7 @@ require 'faker'
 end
 
 15.times do
-  Tweet.create(poster_id: User.all.sample(1)[0].id, body: Faker::Lorem.sentences(1))
+  Tweet.create(poster_id: User.all.sample(1)[0].id, body: Faker::Lorem.sentence(9))
 end
 
 20.times do
