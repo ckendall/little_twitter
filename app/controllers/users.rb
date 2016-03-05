@@ -10,8 +10,15 @@ get '/users/:id' do
 
 
   @user = User.find(params[:id])
+
   @tweets = []
-  if session[:user_id] == params[:id].to_i
+  if params[:your_tweets] && session[:user_id] == params[:id].to_i
+    user_tweets = Tweet.where(poster: params[:id])
+     user_tweets.each do |tweet|
+        @tweets << {name: tweet.poster.user_name, body: tweet.body, poster: tweet.poster.id}
+     end
+
+  elsif session[:user_id] == params[:id].to_i
     @user.posters.each do |poster|
       name = User.find(poster.id)
       followed_tweets = Tweet.where(poster: poster.id)
@@ -24,9 +31,7 @@ get '/users/:id' do
      user_tweets.each do |tweet|
         @tweets << {name: tweet.poster.user_name, body: tweet.body, poster: tweet.poster.id}
      end
-
   end
-
   erb :'/users/show'
 end
 

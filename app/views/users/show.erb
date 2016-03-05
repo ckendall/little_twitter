@@ -1,9 +1,9 @@
 <div class="top">
-  <h1> Home </h1>
+  <h1> your lil' twitter </h1>
   <!-- <a href="/logout">logout</a> -->
-
+  <button style="background-image:url(b6.gif)"><a href=<%="/users/#{session[:user_id]}"%>>home</a></button>
   <button style="background-image:url(b6.gif)"><a href="/tweets/new">tweet</a></button>
-   <button style="background-image:url(b6.gif)"><a href=<%="/users/#{session[:user_id]}"%>>profile</a></button>
+   <button style="background-image:url(b6.gif)"><a href=<%="/users/#{session[:user_id]}?your_tweets=true"%>>profile</a></button>
   <button style="background-image:url(b6.gif)"><a href="/logout">logout</a></button>
 
 </div>
